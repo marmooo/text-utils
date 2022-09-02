@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="様々な加工が簡単にできるテキスト変換ツールです。">
+    <title>text-utils</title>
+    <meta property="og:title" content="text-utils">
+    <meta property="og:site_name" content="text-utils">
+    <meta property="og:description" content="様々な加工が簡単にできるテキスト変換ツールです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marmooo.github.io/text-utils/">
+    <meta property="og:image" content="https://marmooo.github.io/text-utils/favicon/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F2179JXDYY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F2179JXDYY');
+    </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/text-utils/sw.js');
+        });
+      }
+    </script>
+    <link rel="icon" type="image/png" href="/text-utils/favicon/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/text-utils/favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/text-utils/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/text-utils/favicon/site.webmanifest">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+      .clipboard { position:absolute; left:calc(100% - 24px); }
+      #fromTo { height:calc(100vh - 320px); max-height:calc(100vh - 320px); }
+      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
+      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand navbar-light">
+        <div class="container flex-wrap">
+          <a class="navbar-brand" href="/text-utils/">
+            <img alt="text-utils" src="/text-utils/favicon/favicon.svg" width="32" height="32">
+            text-utils
+          </a>
+          <div class="navbar-nav">
+            <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0">🌓</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container d-flex flex-column">
+      <noscript>
+        <div class="alert alert-warning">JavaScript を ON にしてください</div>
+      </noscript>
+      <p>様々な加工が簡単にできるテキスト変換ツールです。</p>
+      <div class="row h-100">
+        <div id="fromTo" class="col-lg-8 col-md d-flex flex-column">
+          <div class="row h-100">
+            <div class="col-lg px-1 pb-3">
+              <div class="d-flex flex-column h-100 position-relative">
+                <div class="flex-grow-1">
+                  <div class="clipboard invisible">
+                    <button class="btn btn-sm btn-light p-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                      </svg>
+                      <svg class="d-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <textarea id="fromText" class="form-control h-100" placeholder="変換したいテキストを入力した後、コマンドを入力してください"></textarea>
+                </div>
+                <div class="col-auto pt-1">
+                  <div class="input-group">
+                    <span class="input-group-text px-1"><small>文字数</small></span>
+                    <input id="fromLength" type="text" class="form-control form-control-sm text-center">
+                    <span class="input-group-text px-1"><small>非空白</small></span>
+                    <input id="fromCount" type="text" class="form-control form-control-sm text-center">
+                    <span class="input-group-text px-1"><small>行数</small></span>
+                    <input id="fromLinage" type="text" class="form-control form-control-sm text-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg px-1 pb-3">
+              <div class="d-flex flex-column h-100 position-relative">
+                <div class="flex-grow-1">
+                  <div class="clipboard invisible">
+                    <button class="btn btn-sm btn-light p-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                      </svg>
+                      <svg class="d-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <textarea id="toText" class="form-control h-100" placeholder="コマンドによる変換結果"></textarea>
+                </div>
+                <div class="col-auto pt-1">
+                  <div class="input-group">
+                    <span class="input-group-text px-1"><small>文字数</small></span>
+                    <input id="toLength" type="text" class="form-control form-control-sm text-center">
+                    <span class="input-group-text px-1"><small>非空白</small></span>
+                    <input id="toCount" type="text" class="form-control form-control-sm text-center">
+                    <span class="input-group-text px-1"><small>行数</small></span>
+                    <input id="toLinage" type="text" class="form-control form-control-sm text-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="commandList" class="col-lg-4 col-md d-flex flex-column">
+          <div class="d-flex">
+            <div>
+              <h5>コマンド一覧</h5>
+            </div>
+            <div class="form-check form-switch ms-4">
+              <input id="procReverse" class="form-check-input" type="checkbox">
+              <label id="procReverseLabel" class="form-check-label" for="procReverse">入力 &rarr; 出力</label>
+            </div>
+          </div>
+          <nav>
+            <div class="nav nav-tabs" id="commands-tab" role="tablist">
+              <button class="nav-link active" id="encode-tab" data-bs-toggle="tab" data-bs-target="#encode" role="tab" aria-controls="encode" aria-selected="false">符号化</button>
+              <button class="nav-link" id="en-tab" data-bs-toggle="tab" data-bs-target="#general" role="tab" aria-controls="general" aria-selected="true">🇺🇸</button>
+              <button class="nav-link" id="ja-tab" data-bs-toggle="tab" data-bs-target="#enja" role="tab" aria-controls="enja" aria-selected="false">🇯🇵</button>
+              <button class="nav-link" id="replace-tab" data-bs-toggle="tab" data-bs-target="#replace" role="tab" aria-controls="replace" aria-selected="false">置換</button>
+              <button class="nav-link" id="js-tab" data-bs-toggle="tab" data-bs-target="#js" role="tab" aria-controls="js" aria-selected="false">JS</button>
+            </div>
+          </nav>
+          <div class="tab-content flex-grow-1">
+            <div id="encode" class="tab-pane show active" role="tabpanel" aria-labelledby="encode-tab">
+              <div class="list-group pt-1">
+                <button id="htmlEscape" type="button" class="list-group-item list-group-item-action">文字 &rarr; HTML文字参照 (escape)</button>
+                <button id="html10" type="button" class="list-group-item list-group-item-action">文字 &rarr; HTML数値参照10進数</button>
+                <button id="html16" type="button" class="list-group-item list-group-item-action">文字 &rarr; HTML数値参照16進数</button>
+                <button id="unicodeUnit" type="button" class="list-group-item list-group-item-action">文字 &rarr; Unicode escape \uXXXX</button>
+                <button id="unicodePoint" type="button" class="list-group-item list-group-item-action">文字 &rarr; Unicode escape \u{XXXX}</button>
+                <button id="uri" type="button" class="list-group-item list-group-item-action">文字 &rarr; URI escape</button>
+                <button id="uriComponent" type="button" class="list-group-item list-group-item-action">文字 &rarr; URIComponent escape</button>
+                <button id="base64" type="button" class="list-group-item list-group-item-action">文字 &rarr; BASE64</button>
+              </div>
+            </div>
+            <div id="general" class="tab-pane" role="tabpanel" aria-labelledby="en-tab">
+              <div class="list-group pt-1">
+                <button id="sortLines" type="button" class="list-group-item list-group-item-action">文字 &xrarr; sort lines</button>
+                <button id="uniqLines" type="button" class="list-group-item list-group-item-action">文字 &xrarr; uniq lines</button>
+                <button id="shuffleLines" type="button" class="list-group-item list-group-item-action">文字 &xrarr; shuffle lines</button>
+                <button id="camelToPascal" type="button" class="list-group-item list-group-item-action">[testData] &rarr; [TestData]</button>
+                <button id="camelToSnake" type="button" class="list-group-item list-group-item-action">[testData] &rarr; [test_data]</button>
+                <button id="snakeNumber" type="button" class="list-group-item list-group-item-action">[test1234] &rarr; [test_1234]</button>
+                <button id="upperLower" type="button" class="list-group-item list-group-item-action">[TESTDATA] &rarr; [testdata]</button>
+              </div>
+            </div>
+            <div id="enja" class="tab-pane" role="tabpanel" aria-labelledby="ja-tab">
+              <div class="list-group pt-1">
+                <button id="hiraKana" type="button" class="list-group-item list-group-item-action">ひらがな &rarr; カタカナ</button>
+                <button id="hiraRoma" type="button" class="list-group-item list-group-item-action">ひらがな &rarr; ローマ字</button>
+                <button id="kanaRoma" type="button" class="list-group-item list-group-item-action">カタカナ &rarr; ローマ字</button>
+                <button id="zenHanRoma" type="button" class="list-group-item list-group-item-action">全角ローマ字 &rarr; 半角ローマ字</button>
+                <button id="zenHanSymbol" type="button" class="list-group-item list-group-item-action">全角記号 &rarr; 半角記号</button>
+                <button id="zenHanKana" type="button" class="list-group-item list-group-item-action">全角カタカナ &rarr; 半角カタカナ</button>
+                <button id="zenHanAll" type="button" class="list-group-item list-group-item-action">文字 &xrarr; 一般的な全角半角に統一</button>
+              </div>
+            </div>
+            <div id="replace" class="tab-pane" role="tabpanel" aria-labelledby="replace-tab">
+              <h6 class="pt-3">置換 (文字列)</h6>
+              <div class="input-group">
+                <input id="stringReplaceFrom" type="text" class="form-control text-center" placeholder="aaa">
+                <span class="input-group-text px-1">を</span>
+                <input id="stringReplaceTo" type="text" class="form-control text-center" placeholder="bbb">
+                <span class="input-group-text px-1">に</span>
+                <button id="stringReplace" type="button" class="btn btn-primary">置換</button>
+              </div>
+              <h6 class="pt-3">置換 (正規表現)</h6>
+              <div class="input-group">
+                <input id="regexpReplaceFrom" type="text" class="form-control text-center" placeholder="([a-z]+)">
+                <span class="input-group-text px-1">を</span>
+                <input id="regexpReplaceTo" type="text" class="form-control text-center" placeholder="$1-1">
+                <span class="input-group-text px-1">に</span>
+                <button id="regexpReplace" type="button" class="btn btn-primary">置換</button>
+              </div>
+              <h6 class="pt-3">連番 (書式指定子)</h6>
+              <div class="input-group">
+                <input id="numberingStart" type="number" class="form-control text-center" placeholder="1">
+                <span class="input-group-text px-1">連番で</span>
+                <input id="numberingFrom" type="text" class="form-control text-center" placeholder="\.lst">
+                <span class="input-group-text px-1">を</span>
+                <input id="numberingTo" type="text" class="form-control text-center" placeholder="%02d.lst">
+                <span class="input-group-text px-1">に</span>
+                <button id="numbering" type="button" class="btn btn-primary">置換</button>
+              </div>
+              <h6 class="pt-3">TSV/CSV から列抽出</h6>
+              <div class="input-group">
+                <input id="extractColumnsSeparator" type="text" class="form-control text-center" placeholder="\t">
+                <span class="input-group-text px-1">区切りの</span>
+                <input id="extractColumnsTarget" type="text" class="form-control text-center" placeholder="3,4">
+                <span class="input-group-text px-1">列目を</span>
+                <button id="extractColumns" type="button" class="btn btn-primary">抽出</button>
+              </div>
+              <div class="d-flex pt-3">
+                <div>
+                  <h6>URL 抽出</h6>
+                </div>
+                <div class="form-check form-check-inline ms-4">
+                  <input class="form-check-input" type="checkbox" id="extractUrlsJapanese" checked>
+                  <label class="form-check-label" for="extractUrlsJapanese">日本語 URI</label>
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text px-1">拡張子</span>
+                <input id="extractUrlsExtensions" type="text" class="form-control text-center" placeholder="png,jpg">
+                <span class="input-group-text px-1">を</span>
+                <button id="extractUrls" type="button" class="btn btn-primary">抽出</button>
+              </div>
+            </div>
+            <div class="tab-pane h-100 mt-1" id="js" role="tabpanel" aria-labelledby="js-tab">
+              <div class="d-flex flex-column h-100">
+                <textarea id="editor" class="form-control flex-grow-1" spellcheck="false" placeholder="JavaScript コードを書いてください">
+function $(e) {
+  return document.getElementById(e);
+}
+
+var from = $("fromText");
+var to = $("toText");
+to.value = from.value;
+</textarea>
+                <div class="text-end">
+                  <button title="文字を大きく" id="increaseText" class="btn btn-light">A+</button>
+                  <button title="文字を小さく" id="decreaseText" class="btn btn-light">A-</button>
+                  <button title="コードを実行" id="runCode" class="btn btn-primary">実行</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="pt-4 alert text-center">
+      <div>
+        <a class="px-1" href="/">Home</a>
+        <a class="px-1" href="/terms/">Terms</a>
+        <a class="px-1" href="https://github.com/marmooo/text-utils">Contact</a>
+      </div>
+      <div class="text-muted">&copy; <a href="https://github.com/marmooo">marmooo</a></div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="/text-utils/index.js"></script>
+  </body>
+</html>
