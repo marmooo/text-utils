@@ -1154,6 +1154,22 @@ function hanKanaToZenKana(str) {
     .replace(/ﾟ/g, "゜");
 }
 
+function numToKan(str) {
+  const url = "/text-utils/japanese-numeral.min.js";
+  import(url).then((module) => {
+    toText.value = module.number2kanji(fromText.value);
+    toText.onchange();
+  });
+}
+
+function kanToNum(str) {
+  const url = "/text-utils/japanese-numeral.min.js";
+  import(url).then((module) => {
+    toText.value = module.kanji2number(fromText.value);
+    toText.onchange();
+  });
+}
+
 function stringReplace() {
   const from = document.getElementById("stringReplaceFrom").value;
   const to = document.getElementById("stringReplaceTo").value;
@@ -1474,6 +1490,14 @@ document.getElementById("zenHanKana").onclick = () => {
     toText.value = hanKanaToZenKana(fromText.value);
   } else {
     toText.value = zenKanaToHanKana(fromText.value);
+  }
+  toText.onchange();
+};
+document.getElementById("kanToNum").onclick = () => {
+  if (procReverse.checked) {
+    toText.value = numToKan(fromText.value);
+  } else {
+    toText.value = kanToNum(fromText.value);
   }
   toText.onchange();
 };
