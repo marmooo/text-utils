@@ -122,6 +122,21 @@ function snakeToCamel(str) {
   return str.replace(/_./g, (s) => s.charAt(1).toUpperCase());
 }
 
+function flatToPascal() {
+  import("/text-utils/wordsninja.min.js").then((module) => {
+    const wordsNinja = new module.WordsNinja();
+    wordsNinja.loadDictionary("/text-utils/words-en.txt").then(() => {
+      const arr = wordsNinja.splitSentence(fromText.value);
+      toText.value = arr.join("_");
+      toText.onchange();
+    });
+  });
+}
+
+function pascalToFlat(str) {
+  return str.replace(/_/g, "");
+}
+
 function toSnakeNumber(str) {
   return str.replace(/([a-z])([0-9]+)/g, "$1_$2");
 }
@@ -1154,7 +1169,7 @@ function hanKanaToZenKana(str) {
     .replace(/ﾟ/g, "゜");
 }
 
-function numToKan(str) {
+function numToKan() {
   const url = "/text-utils/japanese-numeral.min.js";
   import(url).then((module) => {
     toText.value = module.number2kanji(fromText.value);
@@ -1162,7 +1177,7 @@ function numToKan(str) {
   });
 }
 
-function kanToNum(str) {
+function kanToNum() {
   const url = "/text-utils/japanese-numeral.min.js";
   import(url).then((module) => {
     toText.value = module.kanji2number(fromText.value);
@@ -1429,6 +1444,14 @@ document.getElementById("camelToSnake").onclick = () => {
   }
   toText.onchange();
 };
+document.getElementById("flatToPascal").onclick = () => {
+  if (procReverse.checked) {
+    pascalToFlat(fromText.value);
+  } else {
+    flatToPascal(fromText.value);
+  }
+  toText.onchange();
+};
 document.getElementById("snakeNumber").onclick = () => {
   if (procReverse.checked) {
     toText.value = toNoSnakeNumber(fromText.value);
@@ -1495,9 +1518,9 @@ document.getElementById("zenHanKana").onclick = () => {
 };
 document.getElementById("kanToNum").onclick = () => {
   if (procReverse.checked) {
-    toText.value = numToKan(fromText.value);
+    numToKan(fromText.value);
   } else {
-    toText.value = kanToNum(fromText.value);
+    kanToNum(fromText.value);
   }
   toText.onchange();
 };
