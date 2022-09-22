@@ -1195,7 +1195,7 @@ function stringReplace() {
 function regexpReplace() {
   const from = document.getElementById("regexpReplaceFrom").value;
   const to = document.getElementById("regexpReplaceTo").value;
-  const regexp = new RegExp(from, "g");
+  const regexp = new RegExp(from, "mg");
   toText.value = fromText.value.replaceAll(regexp, to);
   toText.onchange();
 }
@@ -1205,7 +1205,7 @@ function numbering() {
   if (!n) n = 0;
   const from = document.getElementById("numberingFrom").value;
   const to = document.getElementById("numberingTo").value;
-  const regexp = new RegExp(from, "g");
+  const regexp = new RegExp(from, "mg");
   const url =
     "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.2/src/sprintf.min.js";
   import(url).then(() => {
