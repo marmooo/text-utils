@@ -1220,8 +1220,7 @@ function numbering() {
 }
 
 function extractColumns() {
-  const separator = document.getElementById("extractColumnsSeparator").value
-    .replaceAll(/\\['"nt]/g, "\t");
+  const separator = document.getElementById("extractColumnsSeparator").value;
   const separatorRegexp = new RegExp(separator, "g");
   const target = document.getElementById("extractColumnsTarget").value
     .split(/\s*,\s*/).map((s) => parseInt(s) - 1);
