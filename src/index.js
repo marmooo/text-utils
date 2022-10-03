@@ -14,6 +14,16 @@ function toggleDarkMode() {
   }
 }
 
+function countTextLength(str) {
+  if (Intl.Segmenter) {
+    const segmenter = new Intl.Segmenter("ja", {granularity: "grapheme"});
+    const segments = segmenter.segment(str);
+    return [...segments].length;
+  } else {
+    return [...str].length;
+  }
+}
+
 function html10Decode(str) {
   function replacer(_matched, p1) {
     return String.fromCodePoint(p1);
@@ -1320,7 +1330,7 @@ const toText = document.getElementById("toText");
 const procReverse = document.getElementById("procReverse");
 fromText.onchange = () => {
   const text = fromText.value;
-  const textLength = [...text].length;
+  const textLength = countTextLength(text);
   const whitespaceCount = (text.match(/\s/g) || []).length;
   document.getElementById("fromLength").value = textLength;
   document.getElementById("fromCount").value = textLength - whitespaceCount;
@@ -1329,7 +1339,7 @@ fromText.onchange = () => {
 };
 toText.onchange = () => {
   const text = toText.value;
-  const textLength = [...text].length;
+  const textLength = countTextLength(text);
   const whitespaceCount = (text.match(/\s/g) || []).length;
   document.getElementById("toLength").value = textLength;
   document.getElementById("toCount").value = textLength - whitespaceCount;
