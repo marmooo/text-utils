@@ -83,7 +83,7 @@ function unicodeUnitDecode(str) {
 function htmlEscapeEncode(str) {
   return str.replace(/&/g, "&amp;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;")
+    .replace(/'/g, "&apos;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
@@ -91,7 +91,7 @@ function htmlEscapeEncode(str) {
 function htmlEscapeDecode(str) {
   return str.replace(/&gt;/g, ">")
     .replace(/&lt;/g, "<")
-    .replace(/&#0?39;/g, "'")
+    .replace(/&apos;/g, "'")
     .replace(/&quot;/g, '"')
     .replace(/&amp;/g, "&");
 }
