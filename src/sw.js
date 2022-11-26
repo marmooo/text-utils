@@ -1,10 +1,10 @@
-var CACHE_NAME = "2022-10-23 19:00";
+var CACHE_NAME = "2022-11-26 12:58";
 var urlsToCache = [
   "/text-utils/",
   "/text-utils/index.js",
   "/text-utils/favicon/favicon.svg",
   "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.2/src/sprintf.min.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css",
 ];
 
 self.addEventListener("install", function (event) {
