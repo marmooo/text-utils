@@ -49,7 +49,7 @@
             text-utils
           </a>
           <div class="navbar-nav">
-            <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0">🌓</button>
+            <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0" type="button">🌓</button>
           </div>
         </div>
       </nav>
@@ -66,7 +66,7 @@
               <div class="d-flex flex-column h-100 position-relative">
                 <div class="flex-grow-1">
                   <div class="clipboard invisible">
-                    <button class="btn btn-sm btn-light p-0">
+                    <button class="btn btn-sm btn-light p-0" type="button">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
@@ -81,11 +81,11 @@
                 <div class="col-auto pt-1">
                   <div class="input-group">
                     <span class="input-group-text px-1"><small>文字数</small></span>
-                    <input id="fromLength" type="text" class="form-control form-control-sm text-center">
+                    <input id="fromLength" class="form-control form-control-sm text-center" type="text">
                     <span class="input-group-text px-1"><small>非空白</small></span>
-                    <input id="fromCount" type="text" class="form-control form-control-sm text-center">
+                    <input id="fromCount" class="form-control form-control-sm text-center" type="text">
                     <span class="input-group-text px-1"><small>行数</small></span>
-                    <input id="fromLinage" type="text" class="form-control form-control-sm text-center">
+                    <input id="fromLinage" class="form-control form-control-sm text-center" type="text">
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@
               <div class="d-flex flex-column h-100 position-relative">
                 <div class="flex-grow-1">
                   <div class="clipboard invisible">
-                    <button class="btn btn-sm btn-light p-0">
+                    <button class="btn btn-sm btn-light p-0" type="button">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
@@ -109,11 +109,11 @@
                 <div class="col-auto pt-1">
                   <div class="input-group">
                     <span class="input-group-text px-1"><small>文字数</small></span>
-                    <input id="toLength" type="text" class="form-control form-control-sm text-center">
+                    <input id="toLength" class="form-control form-control-sm text-center" type="text">
                     <span class="input-group-text px-1"><small>非空白</small></span>
-                    <input id="toCount" type="text" class="form-control form-control-sm text-center">
+                    <input id="toCount" class="form-control form-control-sm text-center" type="text">
                     <span class="input-group-text px-1"><small>行数</small></span>
-                    <input id="toLinage" type="text" class="form-control form-control-sm text-center">
+                    <input id="toLinage" class="form-control form-control-sm text-center" type="text">
                   </div>
                 </div>
               </div>
@@ -131,100 +131,105 @@
             </div>
           </div>
           <nav>
-            <div class="nav nav-tabs" id="commands-tab" role="tablist">
-              <button class="nav-link active" id="encode-tab" data-bs-toggle="tab" data-bs-target="#encode" role="tab" aria-controls="encode" aria-selected="false">符号化</button>
-              <button class="nav-link" id="en-tab" data-bs-toggle="tab" data-bs-target="#general" role="tab" aria-controls="general" aria-selected="true">🇺🇸</button>
-              <button class="nav-link" id="ja-tab" data-bs-toggle="tab" data-bs-target="#enja" role="tab" aria-controls="enja" aria-selected="false">🇯🇵</button>
-              <button class="nav-link" id="replace-tab" data-bs-toggle="tab" data-bs-target="#replace" role="tab" aria-controls="replace" aria-selected="false">置換</button>
-              <button class="nav-link" id="js-tab" data-bs-toggle="tab" data-bs-target="#js" role="tab" aria-controls="js" aria-selected="false">JS</button>
+            <div id="commands-tab" class="nav nav-tabs" role="tablist">
+              <button id="encode-tab" class="nav-link active" type="button"
+                data-bs-toggle="tab" data-bs-target="#encode" role="tab" aria-controls="encode" aria-selected="false">符号化</button>
+              <button id="en-tab" class="nav-link" type="button"
+                data-bs-toggle="tab" data-bs-target="#general" role="tab" aria-controls="general" aria-selected="true">🇺🇸</button>
+              <button id="ja-tab" class="nav-link" type="button"
+                data-bs-toggle="tab" data-bs-target="#enja" role="tab" aria-controls="enja" aria-selected="false">🇯🇵</button>
+              <button id="replace-tab" class="nav-link" type="button"
+                data-bs-toggle="tab" data-bs-target="#replace" role="tab" aria-controls="replace" aria-selected="false">置換</button>
+              <button id="js-tab" class="nav-link" type="button"
+                data-bs-toggle="tab" data-bs-target="#js" role="tab" aria-controls="js" aria-selected="false">JS</button>
             </div>
           </nav>
           <div class="tab-content flex-grow-1">
             <div id="encode" class="tab-pane show active" role="tabpanel" aria-labelledby="encode-tab">
               <div class="list-group pt-1">
-                <button id="htmlEscape" type="button" class="list-group-item list-group-item-action">文字 &rarr; HTML文字参照 (escape)</button>
-                <button id="html10" type="button" class="list-group-item list-group-item-action">文字 &rarr; HTML数値参照10進数</button>
-                <button id="html16" type="button" class="list-group-item list-group-item-action">文字 &rarr; HTML数値参照16進数</button>
-                <button id="unicodeUnit" type="button" class="list-group-item list-group-item-action">文字 &rarr; Unicode escape \uXXXX</button>
-                <button id="unicodePoint" type="button" class="list-group-item list-group-item-action">文字 &rarr; Unicode escape \u{XXXX}</button>
-                <button id="uri" type="button" class="list-group-item list-group-item-action">文字 &rarr; URI escape</button>
-                <button id="uriComponent" type="button" class="list-group-item list-group-item-action">文字 &rarr; URIComponent escape</button>
-                <button id="base64" type="button" class="list-group-item list-group-item-action">文字 &rarr; BASE64</button>
+                <button id="htmlEscape" class="list-group-item list-group-item-action" type="button">文字 &rarr; HTML文字参照 (escape)</button>
+                <button id="html10" class="list-group-item list-group-item-action" type="button">文字 &rarr; HTML数値参照10進数</button>
+                <button id="html16" class="list-group-item list-group-item-action" type="button">文字 &rarr; HTML数値参照16進数</button>
+                <button id="unicodeUnit" class="list-group-item list-group-item-action" type="button">文字 &rarr; Unicode escape \uXXXX</button>
+                <button id="unicodePoint" class="list-group-item list-group-item-action" type="button">文字 &rarr; Unicode escape \u{XXXX}</button>
+                <button id="uri" class="list-group-item list-group-item-action" type="button">文字 &rarr; URI escape</button>
+                <button id="uriComponent" class="list-group-item list-group-item-action" type="button">文字 &rarr; URIComponent escape</button>
+                <button id="base64" class="list-group-item list-group-item-action" type="button">文字 &rarr; BASE64</button>
               </div>
             </div>
             <div id="general" class="tab-pane" role="tabpanel" aria-labelledby="en-tab">
               <div class="list-group pt-1">
-                <button id="sortLines" type="button" class="list-group-item list-group-item-action">文字 &xrarr; sort lines</button>
-                <button id="uniqLines" type="button" class="list-group-item list-group-item-action">文字 &xrarr; uniq lines</button>
-                <button id="shuffleLines" type="button" class="list-group-item list-group-item-action">文字 &xrarr; shuffle lines</button>
-                <button id="camelToPascal" type="button" class="list-group-item list-group-item-action">[testData] &rarr; [TestData]</button>
-                <button id="camelToSnake" type="button" class="list-group-item list-group-item-action">[testData] &rarr; [test_data]</button>
-                <button id="flatToPascal" type="button" class="list-group-item list-group-item-action">[testdata] &rarr; [test_data]</button>
-                <button id="snakeNumber" type="button" class="list-group-item list-group-item-action">[test1234] &rarr; [test_1234]</button>
-                <button id="upperLower" type="button" class="list-group-item list-group-item-action">[TESTDATA] &rarr; [testdata]</button>
+                <button id="sortLines" class="list-group-item list-group-item-action" type="button">文字 &xrarr; sort lines</button>
+                <button id="uniqLines" class="list-group-item list-group-item-action" type="button">文字 &xrarr; uniq lines</button>
+                <button id="shuffleLines" class="list-group-item list-group-item-action" type="button">文字 &xrarr; shuffle lines</button>
+                <button id="camelToPascal" class="list-group-item list-group-item-action" type="button">[testData] &rarr; [TestData]</button>
+                <button id="camelToSnake" class="list-group-item list-group-item-action" type="button">[testData] &rarr; [test_data]</button>
+                <button id="flatToPascal" class="list-group-item list-group-item-action" type="button">[testdata] &rarr; [test_data]</button>
+                <button id="snakeNumber" class="list-group-item list-group-item-action" type="button">[test1234] &rarr; [test_1234]</button>
+                <button id="upperLower" class="list-group-item list-group-item-action" type="button">[TESTDATA] &rarr; [testdata]</button>
               </div>
             </div>
             <div id="enja" class="tab-pane" role="tabpanel" aria-labelledby="ja-tab">
               <div class="list-group pt-1">
-                <button id="hiraKana" type="button" class="list-group-item list-group-item-action">ひらがな &rarr; カタカナ</button>
-                <button id="hiraRoma" type="button" class="list-group-item list-group-item-action">ひらがな &rarr; ローマ字</button>
-                <button id="kanaRoma" type="button" class="list-group-item list-group-item-action">カタカナ &rarr; ローマ字</button>
-                <button id="zenHanRoma" type="button" class="list-group-item list-group-item-action">全角ローマ字 &rarr; 半角ローマ字</button>
-                <button id="zenHanSymbol" type="button" class="list-group-item list-group-item-action">全角記号 &rarr; 半角記号</button>
-                <button id="zenHanKana" type="button" class="list-group-item list-group-item-action">全角カタカナ &rarr; 半角カタカナ</button>
-                <button id="kanToNum" type="button" class="list-group-item list-group-item-action">漢数字 &rarr; 数字</button>
-                <button id="zenHanAll" type="button" class="list-group-item list-group-item-action">文字 &xrarr; 一般的な全角半角に統一</button>
+                <button id="hiraKana" class="list-group-item list-group-item-action" type="button">ひらがな &rarr; カタカナ</button>
+                <button id="hiraRoma" class="list-group-item list-group-item-action" type="button">ひらがな &rarr; ローマ字</button>
+                <button id="kanaRoma" class="list-group-item list-group-item-action" type="button">カタカナ &rarr; ローマ字</button>
+                <button id="zenHanRoma" class="list-group-item list-group-item-action" type="button">全角ローマ字 &rarr; 半角ローマ字</button>
+                <button id="zenHanSymbol" class="list-group-item list-group-item-action" type="button">全角記号 &rarr; 半角記号</button>
+                <button id="zenHanKana" class="list-group-item list-group-item-action" type="button">全角カタカナ &rarr; 半角カタカナ</button>
+                <button id="kanToNum" class="list-group-item list-group-item-action" type="button">漢数字 &rarr; 数字</button>
+                <button id="zenHanAll" class="list-group-item list-group-item-action" type="button">文字 &xrarr; 一般的な全角半角に統一</button>
               </div>
             </div>
             <div id="replace" class="tab-pane" role="tabpanel" aria-labelledby="replace-tab">
               <h6 class="pt-3">置換 (文字列)</h6>
               <div class="input-group">
-                <input id="stringReplaceFrom" type="text" class="form-control text-center" placeholder="aaa">
+                <input id="stringReplaceFrom" class="form-control text-center" type="text" placeholder="aaa">
                 <span class="input-group-text px-1">を</span>
-                <input id="stringReplaceTo" type="text" class="form-control text-center" placeholder="bbb">
+                <input id="stringReplaceTo" class="form-control text-center" type="text" placeholder="bbb">
                 <span class="input-group-text px-1">に</span>
-                <button id="stringReplace" type="button" class="btn btn-primary">置換</button>
+                <button id="stringReplace" class="btn btn-primary" type="button">置換</button>
               </div>
               <h6 class="pt-3">置換 (正規表現)</h6>
               <div class="input-group">
-                <input id="regexpReplaceFrom" type="text" class="form-control text-center" placeholder="([a-z]+)">
+                <input id="regexpReplaceFrom" class="form-control text-center" type="text" placeholder="([a-z]+)">
                 <span class="input-group-text px-1">を</span>
-                <input id="regexpReplaceTo" type="text" class="form-control text-center" placeholder="$1-1">
+                <input id="regexpReplaceTo" class="form-control text-center" type="text" placeholder="$1-1">
                 <span class="input-group-text px-1">に</span>
-                <button id="regexpReplace" type="button" class="btn btn-primary">置換</button>
+                <button id="regexpReplace" class="btn btn-primary" type="button">置換</button>
               </div>
               <h6 class="pt-3">連番 (書式指定子)</h6>
               <div class="input-group">
-                <input id="numberingStart" type="number" class="form-control text-center" placeholder="1">
+                <input id="numberingStart" class="form-control text-center" type="number" placeholder="1">
                 <span class="input-group-text px-1">連番で</span>
-                <input id="numberingFrom" type="text" class="form-control text-center" placeholder="\.lst">
+                <input id="numberingFrom" class="form-control text-center" type="text" placeholder="\.lst">
                 <span class="input-group-text px-1">を</span>
-                <input id="numberingTo" type="text" class="form-control text-center" placeholder="%02d.lst">
+                <input id="numberingTo" class="form-control text-center" type="text" placeholder="%02d.lst">
                 <span class="input-group-text px-1">に</span>
-                <button id="numbering" type="button" class="btn btn-primary">置換</button>
+                <button id="numbering" class="btn btn-primary" type="button">置換</button>
               </div>
               <h6 class="pt-3">TSV/CSV から列抽出</h6>
               <div class="input-group">
-                <input id="extractColumnsSeparator" type="text" class="form-control text-center" placeholder="\t">
+                <input id="extractColumnsSeparator" class="form-control text-center" type="text" placeholder="\t">
                 <span class="input-group-text px-1">区切りの</span>
-                <input id="extractColumnsTarget" type="text" class="form-control text-center" placeholder="3,4">
+                <input id="extractColumnsTarget" class="form-control text-center" type="text" placeholder="3,4">
                 <span class="input-group-text px-1">列目を</span>
-                <button id="extractColumns" type="button" class="btn btn-primary">抽出</button>
+                <button id="extractColumns" class="btn btn-primary" type="button">抽出</button>
               </div>
               <div class="d-flex pt-3">
                 <div>
                   <h6>URL 抽出</h6>
                 </div>
                 <div class="form-check form-check-inline ms-4">
-                  <input class="form-check-input" type="checkbox" id="extractUrlsJapanese" checked>
+                  <input id="extractUrlsJapanese" class="form-check-input" type="checkbox" checked>
                   <label class="form-check-label" for="extractUrlsJapanese">日本語 URI</label>
                 </div>
               </div>
               <div class="input-group">
                 <span class="input-group-text px-1">拡張子</span>
-                <input id="extractUrlsExtensions" type="text" class="form-control text-center" placeholder="png,jpg">
+                <input id="extractUrlsExtensions" class="form-control text-center" type="text" placeholder="png,jpg">
                 <span class="input-group-text px-1">を</span>
-                <button id="extractUrls" type="button" class="btn btn-primary">抽出</button>
+                <button id="extractUrls" class="btn btn-primary" type="button">抽出</button>
               </div>
             </div>
             <div class="tab-pane h-100 mt-1" id="js" role="tabpanel" aria-labelledby="js-tab">
@@ -239,9 +244,9 @@ var to = $("toText");
 to.value = from.value;
 </textarea>
                 <div class="text-end">
-                  <button title="文字を大きく" id="increaseText" class="btn btn-light">A+</button>
-                  <button title="文字を小さく" id="decreaseText" class="btn btn-light">A-</button>
-                  <button title="コードを実行" id="runCode" class="btn btn-primary">実行</button>
+                  <button title="文字を大きく" id="increaseText" class="btn btn-light" type="button">A+</button>
+                  <button title="文字を小さく" id="decreaseText" class="btn btn-light" type="button">A-</button>
+                  <button title="コードを実行" id="runCode" class="btn btn-primary" type="button">実行</button>
                 </div>
               </div>
             </div>
