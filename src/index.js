@@ -954,13 +954,13 @@ function romaToKana(str) {
 }
 
 function zenRomaToHanRoma(str) {
-  return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
+  return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
   });
 }
 
 function hanRomaToZenRoma(str) {
-  return str.replace(/[A-Za-z0-9]/g, function (s) {
+  return str.replace(/[A-Za-z0-9]/g, (s) => {
     return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
   });
 }
@@ -1180,7 +1180,7 @@ function hanKanaToZenKana(str) {
 }
 
 function numToKan() {
-  const url = "/text-utils/japanese-numeral.min.js";
+  const url = "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
   import(url).then((module) => {
     toText.value = module.number2kanji(fromText.value);
     toText.onchange();
@@ -1188,7 +1188,7 @@ function numToKan() {
 }
 
 function kanToNum() {
-  const url = "/text-utils/japanese-numeral.min.js";
+  const url = "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
   import(url).then((module) => {
     toText.value = module.kanji2number(fromText.value);
     toText.onchange();

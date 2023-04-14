@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@geolonia/japanese-numeral": "^0.1.16",
     "wordsninja": "^1.0.0"
   }
 }
