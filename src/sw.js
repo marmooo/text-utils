@@ -1,12 +1,13 @@
-var CACHE_NAME = "2023-04-14 12:05";
+var CACHE_NAME = "2023-05-04 14:40";
 var urlsToCache = [
   "/text-utils/",
   "/text-utils/index.js",
   "/text-utils/favicon/favicon.svg",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css",
+  // "/text-utils/hiraroma.min.js",
   // "/text-utils/wordsninja.min.js",
   // "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm",
   // "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.2/src/sprintf.min.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css",
 ];
 
 self.addEventListener("install", function (event) {
