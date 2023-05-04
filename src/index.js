@@ -133,7 +133,7 @@ function snakeToCamel(str) {
 }
 
 function flatToPascal() {
-  import("/text-utils/wordsninja.min.js").then((module) => {
+  import("/text-utils/wordsninja.js").then((module) => {
     const wordsNinja = new module.WordsNinja();
     wordsNinja.loadDictionary("/text-utils/words-en.txt").then(() => {
       const arr = wordsNinja.splitSentence(fromText.value);
@@ -170,14 +170,14 @@ function hiraToKana(str) {
 }
 
 function hiraToRoma() {
-  import("/text-utils/hiraroma.min.js").then((module) => {
+  import("/text-utils/hiraroma.js").then((module) => {
     toText.value = module.hiraToRoma(fromText.value);
     toText.onchange();
   });
 }
 
 function kanaToRoma() {
-  import("/text-utils/hiraroma.min.js").then((module) => {
+  import("/text-utils/hiraroma.js").then((module) => {
     function replacer(str) {
       const hira = kanaToHira(str);
       return module.hiraToRoma(hira);
@@ -189,14 +189,14 @@ function kanaToRoma() {
 }
 
 function romaToHira() {
-  import("/text-utils/hiraroma.min.js").then((module) => {
+  import("/text-utils/hiraroma.js").then((module) => {
     fromText.value = module.romaToHira(toText.value);
     fromText.onchange();
   });
 }
 
 function romaToKana() {
-  import("/text-utils/hiraroma.min.js").then((module) => {
+  import("/text-utils/hiraroma.js").then((module) => {
     const hira = module.romaToHira(toText.value);
     fromText.value = hiraToKana(hira);
     fromText.onchange();
