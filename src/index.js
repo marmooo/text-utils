@@ -190,16 +190,16 @@ function kanaToRoma() {
 
 function romaToHira() {
   import("/text-utils/hiraroma.js").then((module) => {
-    fromText.value = module.romaToHira(toText.value);
-    fromText.onchange();
+    toText.value = module.romaToHira(fromText.value);
+    toText.onchange();
   });
 }
 
 function romaToKana() {
   import("/text-utils/hiraroma.js").then((module) => {
-    const hira = module.romaToHira(toText.value);
-    fromText.value = hiraToKana(hira);
-    fromText.onchange();
+    const hira = module.romaToHira(fromText.value);
+    toText.value = hiraToKana(hira);
+    toText.onchange();
   });
 }
 
