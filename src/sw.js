@@ -1,9 +1,8 @@
-var CACHE_NAME = "2023-05-23 19:10";
+var CACHE_NAME = "2023-06-23 09:25";
 var urlsToCache = [
   "/text-utils/",
   "/text-utils/index.js",
   "/text-utils/favicon/favicon.svg",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css",
   // "/text-utils/hiraroma.js",
   // "/text-utils/wordsninja.js",
   // "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm",
