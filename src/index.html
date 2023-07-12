@@ -35,17 +35,27 @@
     <style>
       .clipboard { position:absolute; left:calc(100% - 24px); }
       #fromTo { height:calc(100vh - 320px); max-height:calc(100vh - 320px); }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
-      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
+      html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] .btn-light {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: var(--bs-gray-800);
+        --bs-btn-border-color: var(--bs-gray-800);
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: var(--bs-gray-700);
+        --bs-btn-hover-border-color: var(--bs-gray-600);
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: var(--bs-gray-600);
+        --bs-btn-active-border-color: var(--bs-gray-500);
+      }
     </style>
     <script data-ad-client="ca-pub-6459713332128733" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand navbar-light">
+      <nav class="navbar navbar-expand">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/text-utils/">
-            <img alt="text-utils" src="/text-utils/favicon/favicon.svg" width="32" height="32">
+            <img class="favicon" alt="text-utils" src="/text-utils/favicon/favicon.svg" width="32" height="32">
             text-utils
           </a>
           <div class="navbar-nav">
