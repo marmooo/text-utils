@@ -1,3 +1,8 @@
+import { hiraToRoma, romaToHira } from "https://cdn.jsdelivr.net/npm/hiraroma/+esm";
+import { number2kanji, kanji2number } from "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
+import { sprintf } from "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.2/+esm";
+import { WordsNinja } from "./wordsninja.js";
+
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
     document.documentElement.setAttribute("data-bs-theme", "dark");
@@ -133,13 +138,11 @@ function snakeToCamel(str) {
 }
 
 function flatToPascal() {
-  import("/text-utils/wordsninja.js").then((module) => {
-    const wordsNinja = new module.WordsNinja();
-    wordsNinja.loadDictionary("/text-utils/words-en.txt").then(() => {
-      const arr = wordsNinja.splitSentence(fromText.value);
-      toText.value = arr.join("_");
-      toText.onchange();
-    });
+  const wordsNinja = new WordsNinja();
+  wordsNinja.loadDictionary("/text-utils/words-en.txt").then(() => {
+    const arr = wordsNinja.splitSentence(fromText.value);
+    toText.value = arr.join("_");
+    toText.onchange();
   });
 }
 
@@ -169,38 +172,20 @@ function hiraToKana(str) {
   });
 }
 
-function hiraToRoma() {
-  import("/text-utils/hiraroma.js").then((module) => {
-    toText.value = module.hiraToRoma(fromText.value);
-    toText.onchange();
-  });
-}
-
 function kanaToRoma() {
-  import("/text-utils/hiraroma.js").then((module) => {
-    function replacer(str) {
-      const hira = kanaToHira(str);
-      return module.hiraToRoma(hira);
-    }
-    const from = fromText.value.replace(/[ァ-ヴー]+/g, replacer);
-    toText.value = from;
-    toText.onchange();
-  });
-}
-
-function romaToHira() {
-  import("/text-utils/hiraroma.js").then((module) => {
-    toText.value = module.romaToHira(fromText.value);
-    toText.onchange();
-  });
+  function replacer(str) {
+    const hira = kanaToHira(str);
+    return hiraToRoma(hira);
+  }
+  const from = fromText.value.replace(/[ァ-ヴー]+/g, replacer);
+  toText.value = from;
+  toText.onchange();
 }
 
 function romaToKana() {
-  import("/text-utils/hiraroma.js").then((module) => {
-    const hira = module.romaToHira(fromText.value);
-    toText.value = hiraToKana(hira);
-    toText.onchange();
-  });
+  const hira = romaToHira(fromText.value);
+  toText.value = hiraToKana(hira);
+  toText.onchange();
 }
 
 function zenRomaToHanRoma(str) {
@@ -430,19 +415,13 @@ function hanKanaToZenKana(str) {
 }
 
 function numToKan() {
-  const url = "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
-  import(url).then((module) => {
-    toText.value = module.number2kanji(fromText.value);
-    toText.onchange();
-  });
+  toText.value = number2kanji(fromText.value);
+  toText.onchange();
 }
 
 function kanToNum() {
-  const url = "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
-  import(url).then((module) => {
-    toText.value = module.kanji2number(fromText.value);
-    toText.onchange();
-  });
+  toText.value = kanji2number(fromText.value);
+  toText.onchange();
 }
 
 function stringReplace() {
@@ -466,17 +445,13 @@ function numbering() {
   const from = document.getElementById("numberingFrom").value;
   const to = document.getElementById("numberingTo").value;
   const regexp = new RegExp(from, "mg");
-  const url =
-    "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.2/src/sprintf.min.js";
-  import(url).then(() => {
-    function replacer() {
-      const result = sprintf(to, n);
-      n += 1;
-      return result;
-    }
-    toText.value = fromText.value.replaceAll(regexp, replacer);
-    toText.onchange();
-  });
+  function replacer() {
+    const result = sprintf(to, n);
+    n += 1;
+    return result;
+  }
+  toText.value = fromText.value.replaceAll(regexp, replacer);
+  toText.onchange();
 }
 
 function extractColumns() {
@@ -737,9 +712,11 @@ document.getElementById("hiraKana").onclick = () => {
 };
 document.getElementById("hiraRoma").onclick = () => {
   if (procReverse.checked) {
-    romaToHira();
+    toText.value = romaToHira(fromText.value);
+    toText.onchange();
   } else {
-    hiraToRoma();
+    toText.value = hiraToRoma(fromText.value);
+    toText.onchange();
   }
   toText.onchange();
 };
