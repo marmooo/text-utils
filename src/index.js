@@ -1,5 +1,11 @@
-import { hiraToRoma, romaToHira } from "https://cdn.jsdelivr.net/npm/hiraroma/+esm";
-import { number2kanji, kanji2number } from "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
+import {
+  hiraToRoma,
+  romaToHira,
+} from "https://cdn.jsdelivr.net/npm/hiraroma/+esm";
+import {
+  kanji2number,
+  number2kanji,
+} from "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@0.1.16/+esm";
 import { sprintf } from "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.2/+esm";
 import { WordsNinja } from "./wordsninja.js";
 
@@ -21,7 +27,7 @@ function toggleDarkMode() {
 
 function countTextLength(str) {
   if (Intl.Segmenter) {
-    const segmenter = new Intl.Segmenter("ja", {granularity: "grapheme"});
+    const segmenter = new Intl.Segmenter("ja", { granularity: "grapheme" });
     const segments = segmenter.segment(str);
     return [...segments].length;
   } else {
@@ -208,9 +214,12 @@ function hanSmbolToZenSymbol(str) {
 }
 
 function zenSymbolToHanSymbol(str) {
-  return str.replace(/[！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛|}～]/g, (s) => {
-    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-  });
+  return str.replace(
+    /[！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛|}～]/g,
+    (s) => {
+      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+    },
+  );
 }
 
 // https://www.yoheim.net/blog.php?q=20191101
