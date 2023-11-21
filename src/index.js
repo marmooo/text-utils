@@ -566,18 +566,19 @@ fromText.onchange = () => {
   const text = fromText.value;
   const textLength = countTextLength(text);
   const whitespaceCount = (text.match(/\s/g) || []).length;
+  const linage = (text.match(/\n/g) || []).length + 1;
   document.getElementById("fromLength").value = textLength;
   document.getElementById("fromCount").value = textLength - whitespaceCount;
-  document.getElementById("fromLinage").value =
-    (text.match(/\n/g) || []).length;
+  document.getElementById("fromLinage").value = linage;
 };
 toText.onchange = () => {
   const text = toText.value;
   const textLength = countTextLength(text);
   const whitespaceCount = (text.match(/\s/g) || []).length;
+  const linage = (text.match(/\n/g) || []).length + 1;
   document.getElementById("toLength").value = textLength;
   document.getElementById("toCount").value = textLength - whitespaceCount;
-  document.getElementById("toLinage").value = (text.match(/\n/g) || []).length;
+  document.getElementById("toLinage").value = linage;
 };
 procReverse.onchange = () => {
   const label = document.getElementById("procReverseLabel");
