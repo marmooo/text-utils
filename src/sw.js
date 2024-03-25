@@ -1,9 +1,8 @@
-const CACHE_NAME = "2024-02-25 09:42";
+const CACHE_NAME = "2024-03-26 00:00";
 const urlsToCache = [
   "/text-utils/",
   "/text-utils/index.js",
   "/text-utils/favicon/favicon.svg",
-  "https://cdn.jsdelivr.net/npm/hiraroma/+esm",
 ];
 
 self.addEventListener("install", (event) => {

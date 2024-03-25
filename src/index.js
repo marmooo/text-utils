@@ -1,3 +1,4 @@
+import { Tab } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/+esm";
 import {
   hiraToRoma,
   romaToHira,
@@ -558,6 +559,8 @@ function addClipboardButtons() {
 
 loadConfig();
 addClipboardButtons();
+
+new Tab(document.getElementById("commandList"));
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 const fromText = document.getElementById("fromText");
 const toText = document.getElementById("toText");
