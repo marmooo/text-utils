@@ -1,4 +1,4 @@
-import { Tab } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/+esm";
+import { Tab } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/+esm";
 import {
   hiraToRoma,
   romaToHira,
