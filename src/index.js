@@ -10,20 +10,13 @@ import {
 import { sprintf } from "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.3/+esm";
 import { WordsNinja } from "./wordsninja.js";
 
-function loadConfig() {
-  if (localStorage.getItem("darkMode") == 1) {
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
-}
-
 function toggleDarkMode() {
-  if (localStorage.getItem("darkMode") == 1) {
-    localStorage.setItem("darkMode", 0);
-    document.documentElement.setAttribute("data-bs-theme", "light");
-  } else {
-    localStorage.setItem("darkMode", 1);
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
+  const html = document.documentElement;
+  const newTheme = html.getAttribute("data-bs-theme") === "dark"
+    ? "light"
+    : "dark";
+  html.setAttribute("data-bs-theme", newTheme);
+  localStorage.setItem("darkMode", newTheme);
 }
 
 function countTextLength(str) {
@@ -557,7 +550,6 @@ function addClipboardButtons() {
   });
 }
 
-loadConfig();
 addClipboardButtons();
 
 new Tab(document.getElementById("commandList"));
