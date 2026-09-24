@@ -6,7 +6,7 @@ import {
 import {
   kanji2number,
   number2kanji,
-} from "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@1.0.2/+esm";
+} from "https://cdn.jsdelivr.net/npm/@geolonia/japanese-numeral@1.1.0/+esm";
 import { sprintf } from "https://cdn.jsdelivr.net/npm/sprintf-js@1.1.3/+esm";
 import { WordsNinja } from "./wordsninja.js";
 
